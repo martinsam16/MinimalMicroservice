@@ -1,0 +1,21 @@
+version: "3"
+services:
+  interno:
+    build: ./demo
+    container_name: minimo
+    ports:
+      - "8083:8083"
+    networks:
+      - net-microservicio
+
+  externo:
+    image: malditoidealismo/consulta-peru:latest
+    container_name: externo
+    ports:
+      - "5000:5000"
+    networks:
+      - net-microservicio
+    depends_on:
+      - interno
+networks:
+  net-microservicio:

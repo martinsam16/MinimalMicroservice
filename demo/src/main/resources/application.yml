@@ -1,0 +1,11 @@
+server:
+  port: 8083
+spring:
+  data:
+    mongodb:
+      database: demo
+      uri: mongodb+srv://paginas:paginas@paginas-o5dde.mongodb.net/test?retryWrites=true&w=majority
+
+change:
+  ribbon:
+    listOfServers: localhost:5000

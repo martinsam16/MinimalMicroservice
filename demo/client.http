@@ -1,0 +1,30 @@
+GET {{url}}
+
+###
+GET {{url}}/demo
+Accept: application/json
+
+###
+GET {{url}}/demo/one?id=5f212f630167b817a0047188
+Accept: application/json
+
+###
+POST {{url}}/demo
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "bye",
+  "status": "inactive"
+}
+
+###
+GET {{url}}/cambio
+Accept: application/json
+
+###
+GET {{url}}/cambio/2020/6
+Accept: application/json
+
+###
+GET http://192.168.99.100:5000/cambio
