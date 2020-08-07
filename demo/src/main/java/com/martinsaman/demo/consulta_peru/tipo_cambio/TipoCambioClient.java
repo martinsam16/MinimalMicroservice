@@ -1,17 +1,30 @@
 package com.martinsaman.demo.consulta_peru.tipo_cambio;
 
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
-import java.util.List;
+@Service
+public class TipoCambioClient {
 
-@FeignClient("change")
-public interface TipoCambioClient {
+    private WebClient webClient;
 
-    @GetMapping("/cambio")
-    TipoCambioDto getCurrentChange();
+    public TipoCambioClient(WebClient.Builder webClientBuilder) {
+//        this.webClient = webClientBuilder.baseUrl("http://127.0.0.1:5000").build();
+        this.webClient = webClientBuilder.baseUrl("http://172.22.33.148:5000").build();
+//        this.webClient = webClientBuilder.baseUrl("http://consulta-peru-demo.herokuapp.com").build();
+    }
 
-    @GetMapping("/cambio/periodo/{anio}/{mes}")
-    List<TipoCambioDto> getChangePeriod(@PathVariable("anio") Integer year, @PathVariable("mes") Integer month);
+    Mono<TipoCambioDto> getCurrentChange() {
+        return this.webClient.get().uri("/cambio")
+                .retrieve()
+                .bodyToMono(TipoCambioDto.class);
+    }
+
+    Flux<TipoCambioDto> getChangePeriod(Integer year, Integer month) {
+        return this.webClient.get().uri("/cambio/periodo/{year}/{month}", year, month)
+                .retrieve()
+                .bodyToFlux(TipoCambioDto.class);
+    }
 }

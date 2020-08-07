@@ -23,8 +23,10 @@ GET {{url}}/cambio
 Accept: application/json
 
 ###
-GET {{url}}/cambio/2020/6
+GET {{url}}/cambio/periodo/2020/6
 Accept: application/json
 
 ###
 GET http://192.168.99.100:5000/cambio
+
+###

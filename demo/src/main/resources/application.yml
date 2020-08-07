@@ -6,6 +6,13 @@ spring:
       database: demo
       uri: mongodb+srv://paginas:paginas@paginas-o5dde.mongodb.net/test?retryWrites=true&w=majority
 
-change:
-  ribbon:
-    listOfServers: localhost:5000
+#ribbon:
+#  MaxAutoRetries: 1
+#  MaxAutoRetriesNextServer: 1
+#  eureka:
+#    enabled: false
+#
+#change:
+#  ribbon:
+#    ServerListRefreshInterval: 2000
+#    listOfServers: consulta-peru-demo.herokuapp.com,localhost:5000

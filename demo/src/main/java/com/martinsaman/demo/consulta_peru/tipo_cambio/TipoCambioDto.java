@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class TipoCambioDto {
+    private Integer dia;
     private Float compra;
     private Float venta;
-    private Integer dia;
 }
