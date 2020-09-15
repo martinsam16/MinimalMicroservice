@@ -1,4 +1,4 @@
-package com.martinsaman.demo.demo;
+package com.martinsaman.demo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,7 +26,7 @@ public class DemoRest {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    Mono<DemoModel> save(@RequestBody DemoModel model) {
-        return demoService.save(model);
+    void save(@RequestBody DemoModel model) {
+        demoService.save(model);
     }
 }

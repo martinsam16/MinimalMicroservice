@@ -1,17 +1,18 @@
-package com.martinsaman.demo.demo;
+package com.martinsaman.demo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.List;
-
 @Service
 public class DemoService {
 
     @Autowired
     private DemoRepository demoRepository;
+
+    @Autowired
+    DemoProducer producer;
 
     Flux<DemoModel> findAll() {
         return demoRepository.findAll();
@@ -21,7 +22,9 @@ public class DemoService {
         return demoRepository.findById(id);
     }
 
-    Mono<DemoModel> save(DemoModel demo) {
-        return demoRepository.save(demo);
+    void save(DemoModel demoModel) {
+        producer.send(DemoEvent.builder()
+                .event(TypeEvent.CREATED)
+                .model(demoModel).build());
     }
 }

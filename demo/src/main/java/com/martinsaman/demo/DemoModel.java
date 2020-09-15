@@ -1,4 +1,4 @@
-package com.martinsaman.demo.demo;
+package com.martinsaman.demo;
 
 import lombok.Builder;
 import lombok.Data;

@@ -1,5 +1,3 @@
-GET {{url}}
-
 ###
 GET {{url}}/demo
 Accept: application/json
@@ -14,19 +12,6 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "name": "bye",
-  "status": "inactive"
+  "name": "alalau",
+  "status": "active"
 }
-
-###
-GET {{url}}/cambio
-Accept: application/json
-
-###
-GET {{url}}/cambio/periodo/2020/6
-Accept: application/json
-
-###
-GET http://192.168.99.100:5000/cambio
-
-###
