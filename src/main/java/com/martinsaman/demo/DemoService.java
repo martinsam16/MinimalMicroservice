@@ -5,6 +5,9 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 @Service
 public class DemoService {
 
@@ -26,5 +29,19 @@ public class DemoService {
         producer.send(DemoEvent.builder()
                 .event(TypeEvent.CREATED)
                 .model(demoModel).build());
+    }
+
+    String ipAdress() {
+        InetAddress ip;
+        try {
+
+            ip = InetAddress.getLocalHost();
+            return "IP :" + ip.getHostAddress();
+        } catch (UnknownHostException e) {
+
+            e.printStackTrace();
+
+        }
+        return "IP :";
     }
 }

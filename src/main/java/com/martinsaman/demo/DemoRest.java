@@ -24,6 +24,11 @@ public class DemoRest {
         return demoService.findOne(id);
     }
 
+    @GetMapping("/ip-address")
+    String ipAddress() {
+        return demoService.ipAdress();
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     Mono<Void> save(@RequestBody DemoModel model) {
