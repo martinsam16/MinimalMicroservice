@@ -1,2 +1,2 @@
 mvn clean package
-docker build . -t microservicio
+docker build . -t malditoidealismo/minimal-microservice

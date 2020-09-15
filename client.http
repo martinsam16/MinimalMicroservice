@@ -3,6 +3,10 @@ GET {{url}}/demo
 Accept: application/json
 
 ###
+GET {{url}}/demo/ip-address
+Accept: application/json
+
+###
 GET {{url}}/demo/one?id=5f212f630167b817a0047188
 Accept: application/json
 

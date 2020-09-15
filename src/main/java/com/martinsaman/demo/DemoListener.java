@@ -6,6 +6,7 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.stereotype.Component;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 
@@ -22,8 +23,9 @@ public class DemoListener {
         Gson gson = new Gson();
         DemoEvent event = gson.fromJson(message, DemoEvent.class);
         if (event.getEvent() == TypeEvent.CREATED) {
-            System.out.println("Saved: "+message);
-            demoRepository.save(event.getModel()).subscribe();
+            demoRepository.findByName(Mono.just(event.getModel().getName()))
+                    .switchIfEmpty(demoRepository.save(event.getModel())).subscribe();
+            System.out.println("Visto :D");
         }
     }
 }

@@ -25,8 +25,8 @@ public class DemoRest {
     }
 
     @GetMapping("/ip-address")
-    String ipAddress() {
-        return demoService.ipAdress();
+    Mono<String> ipAddress() {
+        return Mono.just(demoService.ipAdress());
     }
 
     @PostMapping
